@@ -13,6 +13,7 @@
     "autoprefixer": "^10.4.7",
     "axios": "^0.27.2",
     "esbuild-wasm": "0.8.27",
+    "localforage": "^1.10.0",
     "postcss": "^8.4.14",
     "postcss-cli": "^9.1.0",
     "postcss-preset-env": "^7.7.1",
