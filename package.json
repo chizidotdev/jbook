@@ -1,5 +1,5 @@
 {
-  "name": "fylo",
+  "name": "jbook",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,6 +11,8 @@
     "@types/react": "^18.0.12",
     "@types/react-dom": "^18.0.5",
     "autoprefixer": "^10.4.7",
+    "axios": "^0.27.2",
+    "esbuild-wasm": "0.8.27",
     "postcss": "^8.4.14",
     "postcss-cli": "^9.1.0",
     "postcss-preset-env": "^7.7.1",
