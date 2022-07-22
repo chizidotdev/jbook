@@ -5,9 +5,23 @@ import { unpkgPathPlugin } from './plugins/unpkg-path-plugin';
 
 function App() {
   const [input, setInput] = useState('');
-  const [code, setCode] = useState('');
 
   const ref = useRef<any>();
+  const iframe = useRef<any>();
+
+  const html = `
+    <html>
+      <head></head>
+      <body>
+        <div id="root"></div>
+        <script>
+          window.addEventListener('message', (event) => {
+            eval(event.data);
+          }, false);
+        </script>
+      </body>
+    </html>
+  `;
 
   const startService = async () => {
     ref.current = await esbuild.startService({
@@ -15,6 +29,8 @@ function App() {
       wasmURL: 'https://unpkg.com/esbuild-wasm@0.8.27/esbuild.wasm',
     });
   };
+
+  ref.current.srcdoc = html;
 
   useEffect(() => {
     startService();
@@ -38,12 +54,7 @@ function App() {
 
     console.log(result);
 
-    // const result = await ref.current.transform(input, {
-    //   loader: "jsx",
-    //   target: "es2015",
-    // });
-
-    setCode(result.outputFiles[0].text);
+    iframe.current.contentWindow.postMessage(result.outputFiles[0].text, '*');
   };
 
   return (
@@ -55,7 +66,12 @@ function App() {
       <div>
         <button onClick={onClick}>Submit</button>
       </div>
-      <pre>{code}</pre>
+      <iframe
+        title="preview"
+        ref={iframe}
+        srcDoc={html}
+        sandbox="allow-scripts"
+      />
     </div>
   );
 }
