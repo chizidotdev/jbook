@@ -2,6 +2,7 @@ import * as esbuild from 'esbuild-wasm';
 import { useEffect, useRef, useState } from 'react';
 import { fetchPlugin } from './plugins/fetch-plugin';
 import { unpkgPathPlugin } from './plugins/unpkg-path-plugin';
+import CodeEditor from './components/code-editor';
 
 function App() {
   const [input, setInput] = useState('');
@@ -30,8 +31,6 @@ function App() {
     });
   };
 
-  ref.current.srcdoc = html;
-
   useEffect(() => {
     startService();
   }, []);
@@ -40,6 +39,7 @@ function App() {
     if (!ref.current) {
       return;
     }
+    ref.current.srcdoc = html;
 
     const result = await ref.current.build({
       entryPoints: ['index.js'],
@@ -59,6 +59,10 @@ function App() {
 
   return (
     <div>
+      <CodeEditor
+        initialValue="const a = 1;"
+        onChange={(value) => setInput(value)}
+      />
       <textarea
         onChange={(e) => setInput(e.target.value)}
         value={input}
