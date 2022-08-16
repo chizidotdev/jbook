@@ -14,6 +14,7 @@
     "@types/react": "^18.0.12",
     "@types/react-dom": "^18.0.5",
     "@types/react-resizable": "^3.0.2",
+    "@uiw/react-md-editor": "2.1.1",
     "autoprefixer": "^10.4.7",
     "axios": "^0.27.2",
     "bulmaswatch": "^0.8.1",
