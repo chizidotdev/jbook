@@ -32,9 +32,6 @@ const reducer = produce((state: CellsState = initialState, action: Action): Cell
       return state;
 
     case ActionType.MOVE_CELL:
-      console.log('moving', action.payload);
-      console.log('old state======', JSON.parse(JSON.stringify(state.order)));
-
       const { direction } = action.payload;
       const index = state.order.findIndex((id) => id === action.payload.id);
       const targetIndex = direction === 'up' ? index - 1 : index + 1;
@@ -45,7 +42,6 @@ const reducer = produce((state: CellsState = initialState, action: Action): Cell
       state.order[index] = state.order[targetIndex];
       state.order[targetIndex] = action.payload.id;
 
-      console.log('new state======', JSON.parse(JSON.stringify(state.order)));
       return state;
 
     case ActionType.INSERT_CELL_AFTER:
@@ -63,7 +59,6 @@ const reducer = produce((state: CellsState = initialState, action: Action): Cell
         state.order.splice(foundIndex + 1, 0, cell.id);
       }
 
-      console.log('new state======', JSON.parse(JSON.stringify(state.order)));
       return state;
 
     default:
