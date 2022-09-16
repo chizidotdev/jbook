@@ -24,7 +24,7 @@ export const useCumulativeCode = (cellId: string) => {
           };
         `;
 
-    const showFuncNoop = 'var show = () = {}';
+    const showFuncNoop = 'var show = () => {}';
 
     const cumulativeCode = [];
 
