@@ -5,6 +5,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { store } from './state';
 import CellList from './components/cell-list';
+import { enableAllPlugins } from 'immer';
+
+enableAllPlugins();
 
 const App = () => {
   return (
